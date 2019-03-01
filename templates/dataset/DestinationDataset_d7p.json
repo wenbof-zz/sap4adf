@@ -1,0 +1,32 @@
+{
+	"name": "DestinationDataset_d7p",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStoragewenboeu",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_fileName": {
+				"type": "String"
+			}
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": {
+				"value": "@dataset().cw_fileName",
+				"type": "Expression"
+			},
+			"folderPath": "saptabledemo/1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

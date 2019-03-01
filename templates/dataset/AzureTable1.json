@@ -1,0 +1,14 @@
+{
+	"name": "AzureTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureTableStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureTable",
+		"typeProperties": {
+			"tableName": "jsontest0214"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

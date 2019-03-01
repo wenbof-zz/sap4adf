@@ -1,0 +1,22 @@
+{
+	"name": "SourceDataset_zg9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "STable9200",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_tableName": {
+				"type": "String"
+			}
+		},
+		"type": "SapTableResource",
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().cw_tableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

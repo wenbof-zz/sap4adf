@@ -1,0 +1,30 @@
+{
+	"name": "SourceDataset_zyu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub73",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_openHubDestinationName": {
+				"type": "String"
+			},
+			"cw_baseRequestId": {
+				"type": "Int"
+			}
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": {
+				"value": "@dataset().cw_openHubDestinationName",
+				"type": "Expression"
+			},
+			"excludeLastRequest": true,
+			"baseRequestId": {
+				"value": "@dataset().cw_baseRequestId",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,14 @@
+{
+	"name": "SapTableResource2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"typeProperties": {
+			"tableName": "/BIC/OHADFDEMO"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

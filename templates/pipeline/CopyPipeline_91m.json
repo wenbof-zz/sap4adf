@@ -1,0 +1,50 @@
+{
+	"name": "CopyPipeline_91m",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_91m",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "/BIC/OHTYPE_FL"
+					},
+					{
+						"name": "Destination",
+						"value": "saptabledemo/0/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_91m",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_91m",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

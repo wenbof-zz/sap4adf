@@ -1,0 +1,14 @@
+{
+	"name": "RelationalTable4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedService1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "RelationalTable",
+		"typeProperties": {
+			"tableName": "\"SYSTEM\".\"DBTABLOG\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

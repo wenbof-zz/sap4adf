@@ -1,0 +1,17 @@
+{
+	"name": "TeradataLinkedService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "Teradata",
+		"typeProperties": {
+			"server": "153.64.73.15",
+			"authenticationType": "Basic",
+			"username": "microsoft",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5YzhlNDljYi03NWQwLTQ1ZGMtYmFhNC04ZmE0YzUzZWEzNWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeforhanasink",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

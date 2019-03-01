@@ -1,0 +1,11 @@
+{
+	"name": "OracleTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OraclePerf",
+			"type": "LinkedServiceReference"
+		},
+		"type": "OracleTable"
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

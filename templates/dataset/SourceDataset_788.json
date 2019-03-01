@@ -1,0 +1,15 @@
+{
+	"name": "SourceDataset_788",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": "DDATS",
+			"excludeLastRequest": false
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

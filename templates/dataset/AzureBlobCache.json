@@ -1,0 +1,30 @@
+{
+	"name": "AzureBlobCache",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStoragePerf",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "Prop_0",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "requestIdCache.txt",
+			"folderPath": "demo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

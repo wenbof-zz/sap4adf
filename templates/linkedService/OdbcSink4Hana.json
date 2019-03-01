@@ -1,0 +1,20 @@
+{
+	"name": "OdbcSink4Hana",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "Odbc",
+		"typeProperties": {
+			"connectionString": {
+				"type": "SecureString",
+				"value": "**********"
+			},
+			"authenticationType": "Basic",
+			"userName": "SYSTEM",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzOTlmNzk1MS1lYWFlLTQzNzYtYjY2Ny0xYzBmYmVkZjJkYjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeforhanasink",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

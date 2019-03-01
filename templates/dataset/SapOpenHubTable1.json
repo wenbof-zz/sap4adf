@@ -1,0 +1,16 @@
+{
+	"name": "SapOpenHubTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub73",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": "OH1",
+			"excludeLastRequest": false,
+			"baseRequestId": 119522
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "SapOpenHub73",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapOpenHub",
+		"typeProperties": {
+			"server": "SAPBW73.corp.microsoft.com",
+			"systemNumber": "00",
+			"clientId": "900",
+			"language": "",
+			"userName": "biuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NTdlNjQyMi0yMzI3LTQzNDQtOTQ2NS1lNzgwYzdmMTIxMDgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeforhanasink",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

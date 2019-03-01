@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_2yz",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "STable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"typeProperties": {
+			"tableName": "V_DD02L"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

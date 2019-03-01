@@ -1,0 +1,11 @@
+{
+	"name": "RelationalTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "PerfHana",
+			"type": "LinkedServiceReference"
+		},
+		"type": "RelationalTable"
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

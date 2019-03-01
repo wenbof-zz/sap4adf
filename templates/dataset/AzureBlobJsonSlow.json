@@ -1,0 +1,47 @@
+{
+	"name": "AzureBlobJsonSlow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "JsonFormat",
+				"filePattern": "setOfObjects",
+				"jsonNodeReference": "$.['Data']",
+				"jsonPathDefinition": {
+					"Data": "$.['Data']",
+					"Status.Success": "$.['Status']['Success']",
+					"Status.ErrorDescription": "$.['Status']['ErrorDescription']",
+					"Status.Result": "$.['Status']['Result']",
+					"Status.LastExecutionMark": "$.['Status']['LastExecutionMark']",
+					"marin_account_name": "['marin_account_name']",
+					"marin_client_id": "['marin_client_id']",
+					"publisher_name": "['publisher_name']",
+					"publisher_id": "['publisher_id']",
+					"campaign_name": "['campaign_name']",
+					"campaign_id": "['campaign_id']",
+					"group_name": "['group_name']",
+					"group_id": "['group_id']",
+					"keyword": "['keyword']",
+					"keyword_id": "['keyword_id']",
+					"Date": "['Date']",
+					"search_bid": "['search_bid']",
+					"impressions": "['impressions']",
+					"potential_impressions": "['potential_impressions']",
+					"Impression_Share": "['Impression_Share']",
+					"clicks": "['clicks']",
+					"publisher_cost": "['publisher_cost']",
+					"avg_pos": "['avg_pos']",
+					"Avg_cpc": "['Avg_cpc']",
+					"TotalConversions": "['TotalConversions']"
+				}
+			},
+			"fileName": "Marin.json",
+			"folderPath": "1203ademo1203"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

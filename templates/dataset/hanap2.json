@@ -1,0 +1,11 @@
+{
+	"name": "hanap2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HanaLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "RelationalTable"
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

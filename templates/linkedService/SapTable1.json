@@ -1,0 +1,19 @@
+{
+	"name": "SapTable1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapTable",
+		"typeProperties": {
+			"server": "Sapbw73",
+			"systemNumber": "00",
+			"clientId": "900",
+			"language": "",
+			"userName": "biuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjYmRlODBhMi0yMTZjLTQxNjEtYTZhZC05MWNlOWI3ZDVjYzYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeforhanasink",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

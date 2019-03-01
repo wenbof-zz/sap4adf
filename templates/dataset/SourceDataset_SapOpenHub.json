@@ -1,0 +1,24 @@
+{
+	"name": "SourceDataset_SapOpenHub",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub73",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"requestId": {
+				"type": "Int"
+			}
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": "OHDADFUT",
+			"excludeLastRequest": false,
+			"baseRequestId": {
+				"value": "@dataset().requestId",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

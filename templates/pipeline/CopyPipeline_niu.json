@@ -1,0 +1,51 @@
+{
+	"name": "CopyPipeline_niu",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_niu",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "TYPE_FL"
+					},
+					{
+						"name": "Destination",
+						"value": "oracleperf/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapOpenHubSource"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false,
+					"parallelCopies": 5
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_niu",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_niu",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,100 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "Data",
+				"type": "String"
+			},
+			{
+				"name": "marin_account_name",
+				"type": "String"
+			},
+			{
+				"name": "marin_client_id",
+				"type": "String"
+			},
+			{
+				"name": "publisher_name",
+				"type": "String"
+			},
+			{
+				"name": "publisher_id",
+				"type": "String"
+			},
+			{
+				"name": "campaign_name",
+				"type": "String"
+			},
+			{
+				"name": "campaign_id",
+				"type": "String"
+			},
+			{
+				"name": "group_name",
+				"type": "String"
+			},
+			{
+				"name": "group_id",
+				"type": "String"
+			},
+			{
+				"name": "keyword",
+				"type": "String"
+			},
+			{
+				"name": "keyword_id",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "search_bid",
+				"type": "String"
+			},
+			{
+				"name": "impressions",
+				"type": "String"
+			},
+			{
+				"name": "potential_impressions",
+				"type": "String"
+			},
+			{
+				"name": "Impression_Share",
+				"type": "String"
+			},
+			{
+				"name": "clicks",
+				"type": "String"
+			},
+			{
+				"name": "publisher_cost",
+				"type": "String"
+			},
+			{
+				"name": "avg_pos",
+				"type": "String"
+			},
+			{
+				"name": "Avg_cpc",
+				"type": "String"
+			},
+			{
+				"name": "TotalConversions",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[TEST]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

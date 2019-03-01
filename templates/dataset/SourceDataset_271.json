@@ -1,0 +1,29 @@
+{
+	"name": "SourceDataset_271",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub9200",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_openHubDestinationName": {
+				"type": "String"
+			},
+			"cw_excludeLastRequest": {
+				"type": "Bool"
+			}
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": {
+				"value": "@dataset().cw_openHubDestinationName",
+				"type": "Expression"
+			},
+			"excludeLastRequest": {
+				"value": "@dataset().cw_excludeLastRequest",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

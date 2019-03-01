@@ -1,0 +1,17 @@
+{
+	"name": "HanaLinkedService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapHana",
+		"typeProperties": {
+			"server": "104.211.48.132:39015",
+			"authenticationType": "Basic",
+			"userName": "SYSTEM",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhZjA5OGEyOC02YmU2LTQ3YTctOTI2NS1hNWUzYmVkYjNhZjgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeforhanasink",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

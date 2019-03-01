@@ -1,0 +1,15 @@
+{
+	"name": "SourceDataset_1bj",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub73",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": "Z0DNWC01",
+			"excludeLastRequest": true
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimesaw",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

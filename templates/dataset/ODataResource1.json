@@ -1,0 +1,14 @@
+{
+	"name": "ODataResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OData365",
+			"type": "LinkedServiceReference"
+		},
+		"type": "ODataResource",
+		"typeProperties": {
+			"path": "Customers"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

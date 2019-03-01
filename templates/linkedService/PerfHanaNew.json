@@ -1,0 +1,17 @@
+{
+	"name": "PerfHanaNew",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapHana",
+		"typeProperties": {
+			"server": "13.68.229.127:39013",
+			"authenticationType": "Basic",
+			"userName": "SYSTEM",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiNDFkYTliNC0xNmRmLTRjNmItYjU2OS05NDk5Nzg4ZDQ1YzkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeforhanasink",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
