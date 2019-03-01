@@ -1,0 +1,225 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name"
+		},
+		"SapOpenHub73": {
+			"type": "string"
+		},
+		"AzureDataLakeStorageForSap": {
+			"type": "string"
+		},
+		"AzureBlobStoragePerf": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipeline_OpenHubDemo')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_SapToAdls",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "LookupCurrentChangeTrackingVersionActivity",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "OHDADFUT"
+							},
+							{
+								"name": "Destination",
+								"value": "demotest/"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "SapOpenHubSource"
+							},
+							"sink": {
+								"type": "AzureBlobFSSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_SapOpenHub",
+								"type": "DatasetReference",
+								"parameters": {
+									"requestId": {
+										"value": "@activity('LookupCurrentChangeTrackingVersionActivity').output.firstRow.Prop_0",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureDataLakeStorageFileForSap",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "LookupCurrentChangeTrackingVersionActivity",
+						"type": "Lookup",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "BlobSource",
+								"recursive": true
+							},
+							"dataset": {
+								"referenceName": "AzureBlobCache",
+								"type": "DatasetReference"
+							}
+						}
+					},
+					{
+						"name": "CacheCopiedRequestId",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Copy_SapToAdls",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"url": "https://prod-49.eastus.logic.azure.com:443/workflows/770083bb85834b67b1072c331547fb68/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8bDsV3o_OdcSWvZ3nDAgCH5v4p84iKqXognhctFdi2w",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"sapOpenHubMaxRequestId": "@{activity('Copy_SapToAdls').output.sapOpenHubMaxRequestId}"
+							}
+						}
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_SapOpenHub')]",
+				"[concat(variables('factoryId'), '/datasets/AzureDataLakeStorageFileForSap')]",
+				"[concat(variables('factoryId'), '/datasets/AzureBlobCache')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_SapOpenHub')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('SapOpenHub73')]",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"requestId": {
+						"type": "Int"
+					}
+				},
+				"type": "SapOpenHubTable",
+				"typeProperties": {
+					"openHubDestinationName": "OHDADFUT",
+					"excludeLastRequest": false,
+					"baseRequestId": {
+						"value": "@dataset().requestId",
+						"type": "Expression"
+					}
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageFileForSap')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('AzureDataLakeStorageForSap')]",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureBlobFSFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "sap/demo"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobCache')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('AzureBlobStoragePerf')]",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "Prop_0",
+						"type": "Int32"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "requestIdCache.txt",
+					"folderPath": "demo"
+				}
+			}
+		}
+	]
+}
