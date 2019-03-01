@@ -1,0 +1,158 @@
+REPORT z_cleanup_ohd_table.
+* Deletes old requests from a BW Open Hub Table.
+* This report only works as part of a BW Process Chain
+*   The report does not contain any parameter
+*   Instead, the process chain variables are used:
+CONSTANTS:
+  c_var_ohd       TYPE rspcrunvariables-fnam VALUE 'OHD',
+  c_var_requestid TYPE rspcrunvariables-fnam VALUE 'REQUESTID'.
+
+* The Process Chain can be triggered by RSPC_API_CHAIN_START using I_T_VARIABLES
+*   variables in I_T_VARIABLES-FNAM
+*   values    in I_T_VARIABLES-LOW
+* Correction instructions of SAP Note 2240308 might be required
+
+DATA:
+  l_ohd       TYPE rsohdest,
+  l_requestid TYPE i,
+  l_req       TYPE n LENGTH 45,
+  l_eventid   LIKE tbtcm-eventid,
+  l_eventparm LIKE tbtcm-eventparm,
+  l_jobcount  LIKE tbtcm-jobcount,
+  l_jobname   LIKE tbtcm-jobname,
+  l_logid     TYPE rspc_logid,
+  l_metalog   TYPE rspc_logid,
+  l_s_vari_db TYPE rspcrunvariables,
+  l_t_vari_db TYPE TABLE OF rspcrunvariables,
+  l_s_vdest   TYPE rsbo_s_vdest,
+  l_r_dest    TYPE REF TO cl_rsb_dest,
+  l_msg       TYPE string.
+
+* No authority check needed:
+* - report has no parameters
+* - report only works within a process chain
+* - authority check should be performed for process chain
+
+* macro for error handling
+DEFINE message_e.
+  IF sy-subrc NE 0.
+    MESSAGE &1 TYPE 'E'.
+  ENDIF.
+END-OF-DEFINITION.
+
+* macro for status messages
+* will be included in the job log of process chain step
+DEFINE message_s.
+  CONCATENATE &1 &2 INTO l_msg SEPARATED BY space.
+  MESSAGE l_msg TYPE 'S'.
+END-OF-DEFINITION.
+
+* debug wait (15 seconds for BW debug user)
+CALL FUNCTION 'RSSM_SLEEP_DEBUG'
+*  EXPORTING
+*    i_seconds = 15
+*    i_always  = 'X'
+    .
+
+* get BATCH JOB info
+CALL FUNCTION 'GET_JOB_RUNTIME_INFO'
+  IMPORTING
+    eventid   = l_eventid
+    eventparm = l_eventparm
+    jobcount  = l_jobcount
+    jobname   = l_jobname
+  EXCEPTIONS
+    OTHERS    = 1.
+message_e 'Not running in a batch job'.
+
+* get LOG ID
+SELECT SINGLE log_id
+  FROM rspcprocesslog
+  INTO l_logid
+  WHERE event_start  = l_eventid
+    AND eventp_start = l_eventparm
+    AND job_count    = l_jobcount.
+message_e 'Process Chain Step not found'.
+
+* get META LOG ID
+SELECT SINGLE meta_log
+  FROM rspclogchain
+  INTO l_metalog
+  WHERE log_id = l_logid.
+message_e 'Process Chain not found'.
+
+* get process chain variables
+SELECT *
+  FROM rspcrunvariables
+  INTO TABLE l_t_vari_db
+  WHERE meta_log = l_metalog.
+IF sy-subrc NE 0.
+  SELECT *
+    FROM rspcrunvariables
+    INTO TABLE l_t_vari_db
+    WHERE meta_log = l_logid.
+ENDIF.
+message_e 'Process Chain Variables not found'.
+
+* read variable OHD
+READ TABLE l_t_vari_db
+  INTO l_s_vari_db
+  WITH KEY fnam = c_var_ohd.
+message_e 'Variable OHD not found'.
+l_ohd = l_s_vari_db-low.
+
+* read variable REQUESTID
+READ TABLE l_t_vari_db
+  INTO l_s_vari_db
+  WITH KEY fnam = c_var_requestid.
+message_e 'Variable REQUESTID not found'.
+l_req  = l_s_vari_db-low.
+l_requestid = l_req.
+IF l_requestid < 1.
+  MESSAGE 'REQUESTID not valid' TYPE 'E'.
+ENDIF.
+
+* get OHD reference
+CALL METHOD cl_rsb_dest=>factory
+  EXPORTING
+    i_dest        = l_ohd
+  RECEIVING
+    r_r_dest      = l_r_dest
+  EXCEPTIONS
+    input_invalid = 1
+    OTHERS        = 2.
+message_e 'OHD does not exist'.
+
+* get OHD info
+CALL METHOD l_r_dest->get_info
+  EXPORTING
+    i_objvers = rs_c_objvers-active
+  IMPORTING
+    e_s_vdest = l_s_vdest
+  EXCEPTIONS
+    not_found = 1
+    OTHERS    = 2.
+message_e 'OHD not found'.
+
+IF l_s_vdest-new_ohd <> rs_c_true
+OR l_s_vdest-dbtab IS INITIAL
+OR l_s_vdest-desttype <> 'TAB'.
+  MESSAGE 'OHD not valid' TYPE 'E'.
+ENDIF.
+
+message_s 'OHD:' l_ohd.
+message_s 'OHD table:' l_s_vdest-dbtab.
+l_msg = l_requestid.
+message_s 'Request ID:' l_msg.
+
+* delete old requests
+TRY .
+    DELETE FROM (l_s_vdest-dbtab)
+      WHERE ohrequid <= l_requestid.
+
+  CATCH cx_root.
+    MESSAGE 'Error when deleting requests' TYPE 'E'.
+ENDTRY.
+
+l_msg = sy-dbcnt.
+message_s '#rows deleted:' l_msg.
