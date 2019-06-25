@@ -1,0 +1,23 @@
+{
+	"name": "SourceDataset_yve",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_openHubDestinationName": {
+				"type": "String"
+			}
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": {
+				"value": "@dataset().cw_openHubDestinationName",
+				"type": "Expression"
+			},
+			"excludeLastRequest": true
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

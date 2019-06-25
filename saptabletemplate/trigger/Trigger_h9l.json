@@ -1,0 +1,24 @@
+{
+	"name": "Trigger_h9l",
+	"properties": {
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyPipeline_h9l",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2019-05-31T11:11:00Z",
+				"endTime": "2019-06-12T11:11:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

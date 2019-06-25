@@ -1,0 +1,50 @@
+{
+	"name": "CopyPipeline_nef",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_nef",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "OH1_DELTA"
+					},
+					{
+						"name": "Destination",
+						"value": "sap/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapOpenHubSource"
+					},
+					"sink": {
+						"type": "AzureBlobFSSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_nef",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_nef",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

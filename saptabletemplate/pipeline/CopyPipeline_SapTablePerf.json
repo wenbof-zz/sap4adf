@@ -1,0 +1,136 @@
+{
+	"name": "CopyPipeline_SapTablePerf",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_qci",
+				"type": "ForEach",
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_qci",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.tableName}"
+								},
+								{
+									"name": "Destination",
+									"value": "demo/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SapTableSource",
+									"partitionOption": "None",
+									"partitionSettings": {
+										"type": "Expression",
+										"value": "@item().copySource.partitionSettings"
+									}
+								},
+								"sink": {
+									"type": "BlobSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_qci",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_tableName": "@item().source.tableName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_qci",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"tableName": "ADDONCHECK"
+						},
+						"destination": {
+							"fileName": "ADDONCHECK.txt"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ADDR_PCDFORMAT"
+						},
+						"destination": {
+							"fileName": "ADDR_PCDFORMAT.txt"
+						}
+					},
+					{
+						"source": {
+							"tableName": "DCIMPDD"
+						},
+						"destination": {
+							"fileName": "DCIMPDD.txt"
+						}
+					},
+					{
+						"source": {
+							"tableName": "DD01L"
+						},
+						"destination": {
+							"fileName": "DD01L.txt"
+						}
+					},
+					{
+						"source": {
+							"tableName": "DD02ALL"
+						},
+						"destination": {
+							"fileName": "DD02ALL.txt"
+						}
+					},
+					{
+						"source": {
+							"tableName": "DD02BT"
+						},
+						"destination": {
+							"fileName": "DD02BT.txt"
+						}
+					},
+					{
+						"source": {
+							"tableName": "DD02L"
+						},
+						"destination": {
+							"fileName": "DD02L.txt"
+						}
+					}
+				]
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

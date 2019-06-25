@@ -1,0 +1,92 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "L_ORDERKEY",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "L_PARTKEY",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "L_SUPPKEY",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "L_LINENUMBER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "L_QUANTITY",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "L_EXTENDEDPRICE",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "L_DISCOUNT",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "L_TAX",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "L_RETURNFLAG",
+				"type": "char"
+			},
+			{
+				"name": "L_LINESTATUS",
+				"type": "char"
+			},
+			{
+				"name": "L_SHIPDATE",
+				"type": "date"
+			},
+			{
+				"name": "L_COMMITDATE",
+				"type": "date"
+			},
+			{
+				"name": "L_RECEIPTDATE",
+				"type": "date"
+			},
+			{
+				"name": "L_SHIPINSTRUCT",
+				"type": "char"
+			},
+			{
+				"name": "L_SHIPMODE",
+				"type": "char"
+			},
+			{
+				"name": "L_COMMENT",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[lineitem_s10]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,49 @@
+{
+	"name": "tablepartition4Sap",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data1",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rfcTableOptions": "",
+						"partitionOption": "PartitionOnInt",
+						"partitionSettings": {
+							"partitionColumnName": "DATAPAKID",
+							"partitionUpperBound": "500",
+							"partitionLowerBound": "1",
+							"maxPartitionsNumber": 500
+						}
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false,
+					"parallelCopies": 5
+				},
+				"inputs": [
+					{
+						"referenceName": "SapTableResource3",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureBlobForDateTime",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

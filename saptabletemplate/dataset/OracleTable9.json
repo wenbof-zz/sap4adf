@@ -1,0 +1,14 @@
+{
+	"name": "OracleTable9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OracleZoe",
+			"type": "LinkedServiceReference"
+		},
+		"type": "OracleTable",
+		"typeProperties": {
+			"tableName": "\"SSIS\".\"LINEITEM_1GB_SOURCE\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

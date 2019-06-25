@@ -1,0 +1,14 @@
+{
+	"name": "SapTableResource5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"typeProperties": {
+			"tableName": "/BIC/OHTYPE_FL"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

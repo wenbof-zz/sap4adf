@@ -1,0 +1,18 @@
+{
+	"name": "linkedServiceBwViaMdx",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapBw",
+		"typeProperties": {
+			"server": "wsiv9200",
+			"systemNumber": "00",
+			"clientId": "000",
+			"userName": "biuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ZWNmZmQ1OS0xYTdhLTRhZjAtYjkyZi01NzEwMTg2NGM1NmEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime9200",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

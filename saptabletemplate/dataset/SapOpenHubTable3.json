@@ -1,0 +1,15 @@
+{
+	"name": "SapOpenHubTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": "CUBE_FLA",
+			"excludeLastRequest": false
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_hsr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"typeProperties": {
+			"tableName": "USR02"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

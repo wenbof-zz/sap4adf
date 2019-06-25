@@ -1,0 +1,61 @@
+{
+	"name": "pipeline22",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data1",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"schemaMapping": {
+							"$['@odata.context']": "['@odata.context']",
+							"UserName": "value[0].UserName",
+							"FirstName": "value[0].FirstName",
+							"LastName": "value[0].LastName",
+							"MiddleName": "value[0].MiddleName",
+							"Gender": "value[0].Gender",
+							"Age": "value[0].Age",
+							"FavoriteFeature": "value[0].FavoriteFeature",
+							"AddressInfo[0].Address": "value[0].AddressInfo[0].Address",
+							"AddressInfo[0].City.Name": "value[0].AddressInfo[0].City.Name",
+							"AddressInfo[0].City.CountryRegion": "value[0].AddressInfo[0].City.CountryRegion",
+							"AddressInfo[0].City.Region": "value[0].AddressInfo[0].City.Region",
+							"HomeAddress": "value[0].HomeAddress"
+						},
+						"collectionReference": "$.value"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "RestResource1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureBlobForDateTime",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,31 @@
+{
+	"name": "SAPOHDSource_Incremental1",
+	"properties": {
+		"description": "SAP BW Open Hub table source",
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"BaseReqeustId": {
+				"type": "Int"
+			},
+			"SAPOpenHubDestinationName": {
+				"type": "String"
+			}
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": {
+				"value": "@dataset().SAPOpenHubDestinationName",
+				"type": "Expression"
+			},
+			"excludeLastRequest": false,
+			"baseRequestId": {
+				"value": "@dataset().BaseReqeustId",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,12 @@
+{
+	"name": "wenboirshared",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/da1d7b9a-a759-41c8-bb73-093a1818e03a/resourcegroups/wenbofTest/providers/Microsoft.DataFactory/factories/wenbofme/integrationruntimes/integrationRuntime1",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

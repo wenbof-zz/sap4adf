@@ -1,0 +1,20 @@
+{
+	"name": "SapTableIdes",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapTable",
+		"typeProperties": {
+			"clientId": "001",
+			"language": "",
+			"sncMode": false,
+			"userName": "wenbof",
+			"server": "wenbofides.eastus.cloudapp.azure.com",
+			"systemNumber": "00",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiMzVhNWE5MC1kYTAwLTRmMjgtOTNhYS00ZmE3ZDU5OTJjYTMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime2018",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "SourceDataset_qnl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "/1BS/VD_EMP_TAX"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

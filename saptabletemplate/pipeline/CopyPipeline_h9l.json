@@ -1,0 +1,129 @@
+{
+	"name": "CopyPipeline_h9l",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_h9l",
+				"type": "ForEach",
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_h9l",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.tableName}"
+								},
+								{
+									"name": "Destination",
+									"value": "@{item().destination.tableName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SapTableSource",
+									"rfcTableOptions": "",
+									"customRfcReadTableFunctionModule": "",
+									"partitionOption": {
+										"value": "@item().copySource.partitionOption",
+										"type": "Expression"
+									},
+									"partitionSettings": {
+										"partitionColumnName": {
+											"value": "@item().copySource.partitionColumnName",
+											"type": "Expression"
+										},
+										"partitionUpperBound": {
+											"value": "@item().copySource.partitionUpperBound",
+											"type": "Expression"
+										},
+										"partitionLowerBound": {
+											"value": "@item().copySource.partitionLowerBound",
+											"type": "Expression"
+										},
+										"maxPartitionsNumber": {
+											"value": "@item().copySource.maxPartitionsNumber",
+											"type": "Expression"
+										}
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_h9l",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_tableName": "@item().source.tableName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_h9l",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_tableName": "@item().destination.tableName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"tableName": "/1BS/SADL_V_NAM2"
+						},
+						"destination": {
+							"tableName": "[dbo].[adlazuredb048c677308cd42dba13b35ad1acb2847]"
+						},
+						"copySource": {
+							"partitionOption": "PartitionOnInt",
+							"partitionColumnName": "a",
+							"partitionUpperBound": "b",
+							"partitionLowerBound": "c",
+							"maxPartitionsNumber": 1
+						}
+					},
+					{
+						"source": {
+							"tableName": "/1BS/TEST_T_FK"
+						},
+						"destination": {
+							"tableName": "[dbo].[adlazuredb00a78fa97ab143eabd2a3462c0c32bf6]"
+						},
+						"copySource": {
+							"partitionOption": "PartitionOnCalendarMonth",
+							"partitionColumnName": "f",
+							"partitionUpperBound": "g",
+							"partitionLowerBound": "h",
+							"maxPartitionsNumber": 2
+						}
+					}
+				]
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

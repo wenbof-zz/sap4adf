@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_nef",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapOpenHubTable",
+		"typeProperties": {
+			"openHubDestinationName": "OH1_DELTA",
+			"excludeLastRequest": false,
+			"baseRequestId": 168393
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

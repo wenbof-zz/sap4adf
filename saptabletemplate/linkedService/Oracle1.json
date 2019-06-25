@@ -1,0 +1,15 @@
+{
+	"name": "Oracle1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "Oracle",
+		"typeProperties": {
+			"connectionString": "host=admsoracle11.eastus.cloudapp.azure.com;port=1521;sid=XE;user id=BinaryTypes",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzZjhlZjliMi05MzI0LTRlZjEtODMxOC1kNjllNzY5OWJlNjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime9200",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

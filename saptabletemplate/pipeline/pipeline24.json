@@ -1,0 +1,72 @@
+{
+	"name": "pipeline24",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data1",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rowCount": 1,
+						"rfcTableOptions": "",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "AS4DATE,AS4TIME",
+						"partitionOption": "None",
+						"convertTimeToTimespan": true
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AS4DATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "column1",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "AS4TIME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "column2",
+									"type": "TimeSpan",
+									"format": "hhmmss"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SapTableResource9",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

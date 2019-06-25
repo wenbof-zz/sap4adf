@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntime9200",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

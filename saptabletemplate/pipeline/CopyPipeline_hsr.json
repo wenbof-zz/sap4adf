@@ -1,0 +1,85 @@
+{
+	"name": "CopyPipeline_hsr",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_hsr",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "USR02"
+					},
+					{
+						"name": "Destination",
+						"value": "demo/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rowCount": 3,
+						"rfcTableOptions": "",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "/1BS/KEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Prop_0"
+								}
+							},
+							{
+								"source": {
+									"name": "/1BS/FIELD1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Prop_1"
+								}
+							},
+							{
+								"source": {
+									"name": "/1BS/FIELD2",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Prop_2"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SapTableResource1V2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_hsr",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

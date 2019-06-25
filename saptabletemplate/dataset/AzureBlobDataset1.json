@@ -1,0 +1,39 @@
+{
+	"name": "AzureBlobDataset1",
+	"properties": {
+		"description": "Blob to store the max copied request ID from SAP BW Open Hub table as high watermark",
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"HighWatermarkBlobPath": {
+				"type": "String"
+			},
+			"HighWatermarkBlobName": {
+				"type": "String"
+			}
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": {
+				"value": "@dataset().HighWatermarkBlobName",
+				"type": "Expression"
+			},
+			"folderPath": {
+				"value": "@dataset().HighWatermarkBlobPath",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

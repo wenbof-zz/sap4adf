@@ -1,0 +1,119 @@
+{
+	"name": "CopyPipeline_qnl",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_qnl",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "/1BS/VD_EMP_TAX"
+					},
+					{
+						"name": "Destination",
+						"value": "[dbo].[adlazuredb00a78fa97ab143eabd2a3462c0c32bf6]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rowCount": 0,
+						"rfcTableOptions": "",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "CLIENT,CURRENCY,EMPL_UUID,TAXAMOUNT",
+						"partitionOption": {
+							"value": "@pipeline().TriggerId",
+							"type": "Expression"
+						},
+						"partitionSettings": {
+							"partitionColumnName": "a",
+							"partitionUpperBound": "b",
+							"partitionLowerBound": "c",
+							"maxPartitionsNumber": 1
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CLIENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_ORDERKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "TAX_UUID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_PARTKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "EMPL_UUID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_SUPPKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "CURRENCY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_LINENUMBER",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TAXAMOUNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "L_QUANTITY",
+									"type": "Decimal"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_qnl",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_qnl",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

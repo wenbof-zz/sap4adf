@@ -1,0 +1,19 @@
+{
+	"name": "RelationalTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedServiceBwViaMdx",
+			"type": "LinkedServiceReference"
+		},
+		"type": "RelationalTable",
+		"structure": [
+			{
+				"name": "[0D_NW_PROD].[LEVEL01].[MEMBER_CAPTION]"
+			},
+			{
+				"name": "[Measures].[0D_NW_NETV]"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

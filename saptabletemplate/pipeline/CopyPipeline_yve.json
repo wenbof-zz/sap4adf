@@ -1,0 +1,115 @@
+{
+	"name": "CopyPipeline_yve",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_yve",
+				"type": "ForEach",
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_yve",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.openHubDestinationName}"
+								},
+								{
+									"name": "Destination",
+									"value": "demo/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SapOpenHubSource"
+								},
+								"sink": {
+									"type": "BlobSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_yve",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_openHubDestinationName": "@item().source.openHubDestinationName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_yve",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"openHubDestinationName": "DDATS"
+						},
+						"destination": {
+							"fileName": "DDATS.txt"
+						}
+					},
+					{
+						"source": {
+							"openHubDestinationName": "OH_INV"
+						},
+						"destination": {
+							"fileName": "OH_INV.txt"
+						}
+					},
+					{
+						"source": {
+							"openHubDestinationName": "OH_INV2"
+						},
+						"destination": {
+							"fileName": "OH_INV2.txt"
+						}
+					},
+					{
+						"source": {
+							"openHubDestinationName": "OH_SEL_1"
+						},
+						"destination": {
+							"fileName": "OH_SEL_1.txt"
+						}
+					},
+					{
+						"source": {
+							"openHubDestinationName": "ZNWDEMO"
+						},
+						"destination": {
+							"fileName": "ZNWDEMO.txt"
+						}
+					}
+				]
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

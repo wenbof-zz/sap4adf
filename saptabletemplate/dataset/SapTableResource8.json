@@ -1,0 +1,14 @@
+{
+	"name": "SapTableResource8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"typeProperties": {
+			"tableName": "CDHDR"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

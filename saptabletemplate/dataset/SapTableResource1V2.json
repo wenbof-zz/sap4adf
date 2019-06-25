@@ -1,0 +1,15 @@
+{
+	"name": "SapTableResource1V2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTableIdes",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "/1BS/TEST_TABLE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

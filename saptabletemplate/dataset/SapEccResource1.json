@@ -1,0 +1,32 @@
+{
+	"name": "SapEccResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapEcc1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapEccResource",
+		"structure": [
+			{
+				"name": "EmpId",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Address",
+				"type": "String"
+			},
+			{
+				"name": "Salary",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"path": "EmpDetailsSet"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

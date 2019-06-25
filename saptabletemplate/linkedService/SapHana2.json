@@ -1,0 +1,17 @@
+{
+	"name": "SapHana2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SapHana",
+		"typeProperties": {
+			"server": "40.112.186.241:39015",
+			"authenticationType": "Basic",
+			"userName": "SYSTEM",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2Zjc5NjI5Zi0wMWJhLTRjZjAtOWNlMy00NjAwZGM3YWJmMDEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime9200",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,76 @@
+{
+	"name": "SapTableResource7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"structure": [
+			{
+				"name": "LOGID",
+				"type": "String"
+			},
+			{
+				"name": "HI_LEVEL",
+				"type": "String"
+			},
+			{
+				"name": "CALL_LEVEL",
+				"type": "String"
+			},
+			{
+				"name": "CALL_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "CALLING_OBJ_ID",
+				"type": "String"
+			},
+			{
+				"name": "CALLING_OBJ_DESC",
+				"type": "String"
+			},
+			{
+				"name": "CALLING_USER",
+				"type": "String"
+			},
+			{
+				"name": "SERVER",
+				"type": "String"
+			},
+			{
+				"name": "LANGU",
+				"type": "String"
+			},
+			{
+				"name": "CALLER_STARTDATE",
+				"type": "String"
+			},
+			{
+				"name": "CALLER_STARTTIME",
+				"type": "String"
+			},
+			{
+				"name": "RESTYPE_ES",
+				"type": "String"
+			},
+			{
+				"name": "DETAIL_ES",
+				"type": "String"
+			},
+			{
+				"name": "RESTYPE_RR",
+				"type": "String"
+			},
+			{
+				"name": "DETAIL_RR",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "CDHDR"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,14 @@
+{
+	"name": "OracleTable4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Oracle1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "OracleTable",
+		"typeProperties": {
+			"tableName": "\"BINARYTYPES\".\"ROLLINGTESTTBWITHPK\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

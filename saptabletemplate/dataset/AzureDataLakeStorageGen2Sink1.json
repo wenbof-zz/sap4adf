@@ -1,0 +1,33 @@
+{
+	"name": "AzureDataLakeStorageGen2Sink1",
+	"properties": {
+		"description": "ADLS Gen2 sink",
+		"linkedServiceName": {
+			"referenceName": "AdlsGen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ADLSGen2SinkPath": {
+				"type": "String"
+			}
+		},
+		"type": "AzureBlobFSFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "data.csv",
+			"folderPath": {
+				"value": "@dataset().ADLSGen2SinkPath",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

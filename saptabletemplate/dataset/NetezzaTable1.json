@@ -1,0 +1,14 @@
+{
+	"name": "NetezzaTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Netezza1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "NetezzaTable",
+		"typeProperties": {
+			"tableName": "\"NWIND\".\"CUSTOMER\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,11 @@
+{
+	"name": "OData2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "OData",
+		"typeProperties": {
+			"url": "https://odata3.projectplace.com/pm/",
+			"authenticationType": "Anonymous"
+		}
+	}
+}

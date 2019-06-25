@@ -1,0 +1,14 @@
+{
+	"name": "OracleTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OracleZoe",
+			"type": "LinkedServiceReference"
+		},
+		"type": "OracleTable",
+		"typeProperties": {
+			"tableName": "\"SSIS\".\"PARTITIONTABLE3\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

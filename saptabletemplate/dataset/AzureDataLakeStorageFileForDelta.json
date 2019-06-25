@@ -1,0 +1,24 @@
+{
+	"name": "AzureDataLakeStorageFileForDelta",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AdlsGen2",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlobFSFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "",
+			"folderPath": "saptable/0625"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

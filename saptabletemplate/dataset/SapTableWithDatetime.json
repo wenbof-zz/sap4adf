@@ -1,0 +1,15 @@
+{
+	"name": "SapTableWithDatetime",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable9200",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "DD02L"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

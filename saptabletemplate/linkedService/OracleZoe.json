@@ -1,0 +1,15 @@
+{
+	"name": "OracleZoe",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "Oracle",
+		"typeProperties": {
+			"connectionString": "host=zoluotestoracle26622.cloudapp.net;port=1521;sid=cdb1;user id=ssis",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiNTRlMzM5Mi0wZmY3LTQ3ZWQtOWU0Ni1lYTUyOWI2MzAzMmIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime9200",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
