@@ -1,9 +1,11 @@
 {
-	"name": "pipeline4saptabledelta",
+	"name": "IncrementalCopyFromSAPTable",
 	"properties": {
+		"description": "Copy incremental data from SAP Table to ADLS Gen2 ",
 		"activities": [
 			{
-				"name": "Copy Data1",
+				"name": "CopyFromSAPTable",
+				"description": "Copy incremental data from SAP table to ADLS Gen2",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -31,7 +33,15 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AzureBlobFSSink"
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSetting"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSetting",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false
 				},
@@ -43,13 +53,14 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureDataLakeStorageFileForDelta",
+						"referenceName": "DelimitedText5inAdlsGen2",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
 				"name": "LookupLastCopiedDate",
+				"description": "Retrieve the last copy triggered date stored in blob",
 				"type": "Lookup",
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -77,10 +88,11 @@
 			},
 			{
 				"name": "SetCopiedDate",
+				"description": "Store the last copy triggered time into blob by calling Logic App",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Copy Data1",
+						"activity": "CopyFromSAPTable",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -102,7 +114,13 @@
 					}
 				}
 			}
-		]
+		],
+		"variables": {
+			"LogicAppURL": {
+				"type": "String",
+				"defaultValue": "https://prod-53.eastus.logic.azure.com:443/workflows/c749fdc93f424f1ab700385c3bf2c86f/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zvNrHinJkzto68KdrD3B1X-oSfyB6JVplfytzJkUNG4"
+			}
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
