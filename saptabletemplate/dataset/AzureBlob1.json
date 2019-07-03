@@ -1,0 +1,33 @@
+{
+	"name": "AzureBlob1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "extenerlaId",
+				"type": "String"
+			},
+			{
+				"name": "Classification",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "JsonFormat",
+				"jsonNodeReference": "$.['MetMl']['securities']['security']",
+				"jsonPathDefinition": {
+					"extenerlaId": "['extenerlaId']",
+					"Classification": "['Classification']"
+				}
+			},
+			"fileName": "testjsons.json",
+			"folderPath": "repro/0626"
+		}
+	}
+}

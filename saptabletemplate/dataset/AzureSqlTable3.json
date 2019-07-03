@@ -1,0 +1,24 @@
+{
+	"name": "AzureSqlTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "column1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "column2",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[jsontest]"
+		}
+	}
+}
